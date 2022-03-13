@@ -20,7 +20,7 @@ class Gyro(LUMPDevice):
 
     @micropython.native
     def callibrate(self):
-        sleep(1)
+        sleep(2)
         self.read(4)
         sleep(0.7)
 
@@ -44,11 +44,11 @@ class twoGyro:
 
     @micropython.native
     def callibrate(self):
-        sleep(1)
+        sleep(2)
 
         self.gyro1.read(4); self.gyro2.read(4)
 
-        sleep(0.7)
+        sleep(0.4)
     
     @micropython.native
     def speed(self):
@@ -74,6 +74,7 @@ class motorsGyro:
         self.rm.reset_angle(0)
         self.lm.reset_angle(0)
 
+"""
 class baseRobot:
     def __init__(self, rmPort, lmPort, gyroPort1, gyroPort2, LrmPort, LlmPort, wheelRad, halfDBM):
         self.rm, self.lm = Motor(rmPort), Motor(lmPort)
@@ -108,6 +109,7 @@ class baseRobot:
         moveMotorTime = time()
         while time() - moveMotorTime <= _time:
             motor.run(speed)
+
         motor.stop()
 
     def moveMotorAvi(self, motor, _time, speed):
@@ -124,7 +126,6 @@ class baseRobot:
             distance = self.rm.angle() - rmLast + self.lm.angle() - lmLast
             self.move_on(rmSpeed, lmSpeed)
             rmLast, lmLast = self.rm.angle(), self.lm.angle()
-            self.updateLocation(distance)
 
         self.rm.brake(); self.lm.brake()
 
@@ -169,3 +170,15 @@ class baseRobot:
     def Rotations(self, cm):
         return cm / (2 * self.wheelRad * pi)
     
+    @micropython.native
+    def displayState(self):
+        with self.lock:
+            x, y = self.x, self.y
+        
+        self.brick.screen.clear()
+
+        self.brick.screen.draw_text(0, 0, "x:", x, , text_color=Color.BLACK, background_color=None)
+        self.brick.screen.draw_text(0, 50, "y:", y, , text_color=Color.BLACK, background_color=None)
+        self.brick.screen.draw_text(0, 100, "gyro:", self.gyro.angle(), , text_color=Color.BLACK, background_color=None)
+
+"""

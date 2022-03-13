@@ -1,22 +1,44 @@
 #!/usr/bin/env pybricks-micropython
-# Create your objects here.5
-from robotCore import * 
-from pybricks.iodevices import LUMPDevice
+# Create your objects here
 from time import sleep, time
-from testPointsFile import *
-from tests import Test
-from runsFile import *
+startTime = time()
+
+from pybricks.iodevices import LUMPDevice
+from pybricks.parameters import Button, Color
+print("a")
+
+from time import sleep, time
+print("b")
+
+from robotCore import robot
+
+import runsCode 
+print((time() - startTime) / 60)
 
 robot.brick.light.on(Color.YELLOW)
-robot.gyro.callibrate()
-robot.gyro.reset_angle(-90)
+robot.brick.speaker.beep(duration = 400)
 
 
-with robot.lock:
-    robot.x, robot.y = 0, 0
+def mainRuns():
+    robot.Lrm.reset_angle(0); robot.Llm.reset_angle(0)
+    while True :
+        bc = robot.brick.buttons.pressed()
+        
+        if bc == [Button.RIGHT]: 
+            runsCode.secondRun()
 
-robot.spline(points_splinesecondFirst, lastTimesecondFirst, 4, 0.85, 0, 1.12)
-robot.turn(10, 0.0007, 4, 0)
+        if bc == [Button.LEFT]:
+            runsCode.fourthRun()
 
-with robot.lock:
-    print(robot.x, robot.y, robot.gyro.angle())
+        if bc == [Button.DOWN]:
+            runsCode.thirdRun()
+
+        if bc == [Button.UP]:
+            runsCode.firstRun2()
+        
+
+        if bc == [Button.CENTER]:
+            robot.brick.speaker.beep(duration = 400)
+            runsCode.judgesCode()
+
+mainRuns()                                                                                       
