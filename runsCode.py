@@ -12,6 +12,7 @@ from time import time
 
 @micropython.native
 def firstRun2():
+    # A
     robot.gyro.callibrate()
     robot.brick.speaker.beep()
     robot.gyro.reset_angle(-90)
@@ -40,7 +41,7 @@ def firstRun2():
 
     robot.spline2(points_splinefirstFifth, lastTimefirstFifth, 4, 1.3, 0.2)
 
-    robot.spline2(points_splinefirstSixth, lastTimefirstSixth, 4, 1.3, 0.2)
+    robot.spline2(points_splinefirstSixth, lastTimefirstSixth, 4, 1.2, 0.2)
 
     robot.turn2(5, 0.003, 0.1, -90)
 
@@ -152,7 +153,7 @@ def secondRun():
         print(robot.x, robot.y, robot.gyro.angle())
 
 
-    robot.moveMotor(robot.Llm, 1, 700)
+    robot.moveMotor(robot.Llm, 1, 900)
 
     robot.turn2(6.5, 0.003, 0.0, -200, 10)
     
@@ -259,7 +260,7 @@ def fourthRun():
 
     robot.spline2(points_splinefourthSixth, lastTimefourthSixth, 3, 1.12, 0.5)
 
-    robot.moveMotor(robot.Llm, 4.2, -70)
+    # robot.moveMotor(robot.Llm, 4.2, -70)
 
     robot.spline2(points_splinefourthSeventh, lastTimefourthSeventh, -3, 1.12, 0.25)
 

@@ -35,10 +35,5 @@ def mainRuns():
 
         if bc == [Button.UP]:
             runsCode.firstRun2()
-        
-
-        if bc == [Button.CENTER]:
-            robot.brick.speaker.beep(duration = 400)
-            runsCode.judgesCode()
 
 mainRuns()                                                                                       
